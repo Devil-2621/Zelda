@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Root application layout that wraps pages with authentication, global fonts, and theme management.
+ *
+ * @returns The root JSX element that wraps `children` with Clerk authentication and a ThemeProvider, and applies HTML `lang="en"`, font CSS variables, and antialiasing to the document body.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
