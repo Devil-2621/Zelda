@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 
+import { ClerkProvider } from '@clerk/nextjs'
 import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
@@ -24,12 +25,18 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Root application layout that wraps pages with authentication, global fonts, and theme management.
+ *
+ * @returns The root JSX element that wraps `children` with Clerk authentication and a ThemeProvider, and applies HTML `lang="en"`, font CSS variables, and antialiasing to the document body.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${geistMono.variable} antialiased`}
@@ -44,5 +51,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
