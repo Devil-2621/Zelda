@@ -17,7 +17,7 @@ import { ThemeProvider } from "./theme-provider";
 import { ThemeToggle } from "./theme-toggle";
 
 if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
-  throw new Error("Missing!, NEXT_PUBLIC_CONVEX_URL environment variable is not set");
+  throw new Error("Missing NEXT_PUBLIC_CONVEX_URL: environment variable is not set.");
 }
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
