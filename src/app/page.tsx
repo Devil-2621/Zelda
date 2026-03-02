@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
+import DemoPage from "./demo/page";
 
 export default function Home() {
   const projects = useQuery(api.projects.get);
@@ -23,6 +24,10 @@ export default function Home() {
           <p>Owner Id: {project.ownerId}</p>
         </div>
       ))}
+
+      <div className="border rounded p-2 flex flex-col mt-8">
+        <DemoPage />
+      </div>
     </div>
   );
 }
