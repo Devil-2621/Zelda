@@ -11,7 +11,11 @@ import { generateText } from 'ai';
 // Create an OpenRouter client
 // const openrouter = createOpenRouter({
 // 	apiKey: process.env.OPENROUTER_AI_API_KEY!,
-// });
+/**
+ * Handle POST requests by generating a haiku about the ocean and returning it as JSON.
+ *
+ * @returns A NextResponse with a JSON body containing a `text` property set to the generated haiku.
+ */
 
 export async function POST() {
 	const response = await generateText({

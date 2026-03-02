@@ -45,6 +45,13 @@ function DrawerOverlay({
   )
 }
 
+/**
+ * Renders the drawer's content inside a portal, applying slot labels and responsive styling for each drawer direction.
+ *
+ * @param className - Additional CSS classes to merge with the component's default styling
+ * @param children - Elements to render inside the drawer content
+ * @returns A drawer content element rendered into a DrawerPortal
+ */
 function DrawerContent({
   className,
   children,

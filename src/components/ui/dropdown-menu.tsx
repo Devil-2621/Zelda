@@ -131,6 +131,14 @@ function DropdownMenuSubTrigger({
   )
 }
 
+/**
+ * Renders submenu content for a dropdown menu with submenu-specific default alignment and styling.
+ *
+ * Accepts the same props as DropdownMenuContent; by default it sets `align="start"`, `alignOffset=-3`, `side="right"`, and `sideOffset=0`, and adds submenu-specific class names and `data-slot="dropdown-menu-sub-content"`.
+ *
+ * @param className - Additional CSS class names to merge with the component's default styles
+ * @returns The rendered DropdownMenuContent element configured for a submenu
+ */
 function DropdownMenuSubContent({
   align = "start",
   alignOffset = -3,

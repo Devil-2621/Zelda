@@ -10,7 +10,13 @@ import { inngest } from '@/inngest/client';
 // Create an OpenRouter client
 // const openrouter = createOpenRouter({
 // 	apiKey: process.env.OPENROUTER_AI_API_KEY!,
-// });
+/**
+ * Triggers the 'demo/generate' background job and returns a short JSON status.
+ *
+ * Enqueues a background task named "demo/generate" with an empty payload via the configured Inngest client.
+ *
+ * @returns A JSON response with `{ status: 'started' }`
+ */
 
 export async function POST() {
 	await inngest.send({

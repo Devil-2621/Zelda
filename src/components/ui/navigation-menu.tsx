@@ -100,6 +100,16 @@ function NavigationMenuContent({
   )
 }
 
+/**
+ * Render a positioned navigation menu portal that places the popup and viewport according to the specified side and alignment.
+ *
+ * @param className - Additional CSS classes to apply to the positioner element
+ * @param side - Side of the trigger the menu should appear on ("top", "right", "bottom", "left")
+ * @param sideOffset - Distance in pixels between the trigger and the positioned popup along the chosen side
+ * @param align - Alignment of the popup relative to the trigger ("start", "center", "end")
+ * @param alignOffset - Additional pixel offset applied along the alignment axis
+ * @returns A NavigationMenu portal containing a positioned popup with its viewport
+ */
 function NavigationMenuPositioner({
   className,
   side = "bottom",

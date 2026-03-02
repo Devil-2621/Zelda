@@ -4,6 +4,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
+/**
+ * Demo page showing two API interactions: a blocking POST and a background-job POST, each with independent loading states.
+ *
+ * Renders two large Buttons that trigger POST requests to /api/demo/blocking and /api/demo/background-jobs; each button disables and shows "Loading..." while its request is in flight.
+ *
+ * @returns The React element for the demo page.
+ */
 export default function DemoPage() {
   // this useState is just for demo purpose to show loading state of API calls, you can remove it in your actual implementation
   const [ loading, setLoading ] = useState(false);

@@ -53,6 +53,13 @@ function TabsList({
   )
 }
 
+/**
+ * Renders an individual tab trigger with variant-aware styling, active/disabled state styles, and the underline/indicator positioning.
+ *
+ * @param className - Optional additional class names to merge with the component's default styles.
+ * @param props - Other props forwarded to the underlying tab primitive.
+ * @returns The rendered tab trigger element.
+ */
 function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
   return (
     <TabsPrimitive.Tab

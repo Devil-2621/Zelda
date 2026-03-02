@@ -283,6 +283,15 @@ function SidebarTrigger({
   )
 }
 
+/**
+ * Renders the rail-style toggle control used to open or collapse the sidebar.
+ *
+ * Renders a visually narrow, positioned button that calls the sidebar toggle action when clicked.
+ *
+ * @param className - Optional className added to the button element.
+ * @param props - Remaining native button props forwarded to the underlying element.
+ * @returns The JSX `button` element that acts as the sidebar rail trigger.
+ */
 function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
   const { toggleSidebar } = useSidebar()
 
