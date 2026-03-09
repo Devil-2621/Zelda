@@ -20,7 +20,12 @@ import { generateText } from 'ai';
 export async function POST() {
 	const response = await generateText({
 		model: google('gemini-2.5-flash'),
-		prompt: 'Write a haiku about the ocean.',
+		prompt: 'Write a poem about coders.',
+		experimental_telemetry: {
+			isEnabled: true,
+			recordInputs: true,
+			recordOutputs: true,
+		},
 	});
 
 	// Example of using openrouter provider with stream-text in background jobs demo (without blocking API response) - you can replace it with any long-running task or any other provider of your choice
