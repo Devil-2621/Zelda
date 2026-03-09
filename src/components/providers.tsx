@@ -35,6 +35,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
         <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
           <Authenticated>
             <UserButton />
+            <ThemeToggle />
             {children}
           </Authenticated>
           <Unauthenticated>
@@ -43,7 +44,6 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
           <AuthLoading>
             <AuthLoadingView />
           </AuthLoading>
-          <ThemeToggle />
         </ConvexProviderWithClerk>
       </ClerkProvider>
     </ThemeProvider>
