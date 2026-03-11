@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Providers } from "@/components/providers";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+import "allotment/dist/style.css";
 import "./globals.css";
 
 const inter = Inter({
