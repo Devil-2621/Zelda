@@ -14,7 +14,6 @@ import { AuthLoadingView } from "@/features/auth/components/auth-loading-view";
 
 import { shadcn } from "@clerk/themes";
 import { ThemeProvider } from "./theme-provider";
-import { ThemeToggle } from "./theme-toggle";
 
 if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
   throw new Error("Missing NEXT_PUBLIC_CONVEX_URL: environment variable is not set.");
@@ -34,8 +33,6 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
       }}>
         <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
           <Authenticated>
-            <UserButton />
-            <ThemeToggle />
             {children}
           </Authenticated>
           <Unauthenticated>

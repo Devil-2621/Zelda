@@ -1,5 +1,6 @@
 "use client"
 
+import { Navbar } from "@/components/home-navbar";
 import { ProjectsView } from "@/features/projects/components/project-view";
 
 /**
@@ -12,6 +13,9 @@ import { ProjectsView } from "@/features/projects/components/project-view";
  */
 export default function Home() {
   return (
-    <ProjectsView />
+    <>
+      <Navbar />
+      <ProjectsView />
+    </>
   );
 }
