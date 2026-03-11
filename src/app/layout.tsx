@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 
+import { Toaster } from "@/components/ui/sonner";
 import { Providers } from "@/components/providers";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -41,7 +42,10 @@ export default function RootLayout({
         className={`${inter.variable} ${geistMono.variable} antialiased`}
       >
         <TooltipProvider>
-          <Providers>{children}</Providers>
+          <Providers>
+            {children}
+            <Toaster />
+          </Providers>
         </TooltipProvider>
       </body>
     </html>

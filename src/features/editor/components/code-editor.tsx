@@ -2,12 +2,16 @@ import { useEffect, useMemo, useRef } from "react"
 import { EditorView, keymap } from "@codemirror/view";
 import { oneDark } from "@codemirror/theme-one-dark";
 import { indentWithTab } from "@codemirror/commands";
+import { Compartment } from "@codemirror/state";
 import { indentationMarkers } from "@replit/codemirror-indentation-markers";
 
 import { minimap } from "../extensions/minimap";
 import { customTheme } from "../extensions/theme";
 import { getLanguageExtension } from "../extensions/language-extension";
 import { customSetup } from "../extensions/custom-setup";
+import { suggestion } from "../extensions/suggestion";
+import { quickEdit } from "../extensions/quick-edit";
+import { selectionTooltip } from "../extensions/selection-tooltip";
 
 interface Props {
   fileName: string;
@@ -22,6 +26,7 @@ export const CodeEditor = ({
 }: Props) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
+  const wordWrapCompartment = useMemo(() => new Compartment(), []);
 
   const languageExtension = useMemo(() => {
     return getLanguageExtension(fileName)
@@ -38,7 +43,25 @@ export const CodeEditor = ({
         customTheme,
         customSetup,
         languageExtension,
-        keymap.of([indentWithTab]),
+        suggestion(fileName),
+        quickEdit(fileName),
+        selectionTooltip(),
+        wordWrapCompartment.of([]),
+        keymap.of([
+          indentWithTab,
+          {
+            key: 'Alt-z',
+            run(view) {
+              const isWrapping = wordWrapCompartment.get(view.state) === EditorView.lineWrapping;
+              view.dispatch({
+                effects: wordWrapCompartment.reconfigure(
+                  isWrapping ? [] : EditorView.lineWrapping
+                ),
+              });
+              return true;
+            },
+          },
+        ]),
         minimap(),
         indentationMarkers(),
         EditorView.updateListener.of((update) => {
