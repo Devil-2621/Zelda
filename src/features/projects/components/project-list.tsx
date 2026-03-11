@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Doc } from "../../../../convex/_generated/dataModel";
 
 import { useProjectsPartial } from "@/features/projects/hooks/use-projects";
-import { CommandShortcut } from "@/components/ui/command";
 
 const formatTimestamp = (timestamp: number) => {
   return formatDistanceToNow(new Date(timestamp), {

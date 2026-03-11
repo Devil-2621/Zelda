@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 
 import { Providers } from "@/components/providers";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 import "./globals.css";
-import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({
   variable: "--font-inter",
