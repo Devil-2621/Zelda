@@ -92,7 +92,7 @@
 
   --font-sans: Inter, sans-serif;
   --font-serif: Playfair Display, serif;
-  --font-mono: IBM Plex Mono, monospace;
+  --font-mono: Geist Mono, monospace;
 
   --radius: 0.005rem;
   
@@ -155,7 +155,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground select-none;
   }
 }
 

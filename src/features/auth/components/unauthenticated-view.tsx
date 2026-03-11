@@ -1,4 +1,4 @@
-import { ShieldAlertIcon } from "lucide-react";
+import { AlertDiamondIcon } from "hugeicons-react";
 
 import {
   Item,
@@ -17,7 +17,7 @@ export const UnauthenticatedView = () => {
       <div className="w-full max-w-lg bg-muted">
         <Item variant="outline">
           <ItemMedia variant="icon">
-            <ShieldAlertIcon />
+            <AlertDiamondIcon />
           </ItemMedia>
           <ItemContent>
             <ItemTitle>Unauthorized Access</ItemTitle>

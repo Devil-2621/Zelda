@@ -79,7 +79,7 @@ export const Navbar = ({
               >
                 <Image
                   src="/zelda-logo.webp"
-                  alt="Logo"
+                  alt="Zelda logo"
                   width={20}
                   height={20}
                 />

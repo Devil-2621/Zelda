@@ -1,5 +1,7 @@
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowRight01Icon, CollapseIcon, FolderAddIcon } from "@hugeicons/core-free-icons";
 import { useState } from "react"
-import { ChevronRightIcon, CopyMinusIcon, FilePlusCornerIcon, FolderPlusIcon } from "lucide-react"
+import { FileAddIcon } from "hugeicons-react";
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -21,7 +23,7 @@ export const FileExplorer = ({
 }: {
   projectId: Id<"projects">
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [collapseKey, setCollapseKey] = useState(0);
   const [creating, setCreating] = useState<"file" | "folder" | null>(
     null
@@ -62,12 +64,10 @@ export const FileExplorer = ({
           onClick={() => setIsOpen((value) => !value)}
           className="group/project cursor-pointer w-full text-left flex items-center gap-0.5 h-5.5 bg-accent font-bold"
         >
-          <ChevronRightIcon
-            className={cn(
-              "size-4 shrink-0 text-muted-foreground",
-              isOpen && "rotate-90"
-            )}
-          />
+          <HugeiconsIcon icon={ArrowRight01Icon} className={cn(
+            "size-4 shrink-0 text-muted-foreground",
+            isOpen && "rotate-90"
+          )} />
           <p className="text-xs uppercase line-clamp-1">
             {project?.name ?? "Loading..."}
           </p>
@@ -82,7 +82,7 @@ export const FileExplorer = ({
               variant="highlight"
               size="icon-xs"
             >
-              <FilePlusCornerIcon className="size-3.5" />
+              <FileAddIcon className="size-3.5" />
             </Button>
             <Button
               onClick={(e) => {
@@ -94,7 +94,7 @@ export const FileExplorer = ({
               variant="highlight"
               size="icon-xs"
             >
-              <FolderPlusIcon className="size-3.5" />
+              <HugeiconsIcon icon={FolderAddIcon} className="size-3.5" />
             </Button>
             <Button
               onClick={(e) => {
@@ -105,7 +105,7 @@ export const FileExplorer = ({
               variant="highlight"
               size="icon-xs"
             >
-              <CopyMinusIcon className="size-3.5" />
+              <HugeiconsIcon icon={CollapseIcon} className="size-3.5" />
             </Button>
           </div>
         </div>
