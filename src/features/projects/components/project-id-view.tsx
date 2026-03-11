@@ -1,11 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { Github01Icon } from "hugeicons-react";
+import { Allotment } from "allotment";
+import { GithubIcon } from "hugeicons-react";
 
 import { cn } from "@/lib/utils";
 
+import { FileExplorer } from "./file-explorer";
 import { Id } from "../../../../convex/_generated/dataModel";
+
+const MIN_SIDEBAR_WIDTH = 200;
+const MAX_SIDEBAR_WIDTH = 800;
+const DEFAULT_SIDEBAR_WIDTH = 350;
+const DEFAULT_MAIN_SIZE = 1000;
 
 const Tab = ({
   label,
@@ -51,7 +58,7 @@ export const ProjectIdView = ({
         />
         <div className="flex-1 flex justify-end h-full">
           <div className="flex items-center gap-1.5 h-full px-3 cursor-pointer text-muted-foreground border-l hover:bg-accent/30">
-            <Github01Icon className="size-3.5" />
+            <GithubIcon className="size-3.5" />
             <span className="text-sm">Export</span>
           </div>
         </div>
@@ -61,7 +68,19 @@ export const ProjectIdView = ({
           "absolute inset-0",
           activeView === "editor" ? "visible" : "invisible"
         )}>
-          <div>Editor</div>
+          <Allotment defaultSizes={[DEFAULT_SIDEBAR_WIDTH, DEFAULT_MAIN_SIZE]}>
+            <Allotment.Pane
+              snap
+              minSize={MIN_SIDEBAR_WIDTH}
+              maxSize={MAX_SIDEBAR_WIDTH}
+              preferredSize={DEFAULT_SIDEBAR_WIDTH}
+            >
+              <FileExplorer projectId={projectId} />
+            </Allotment.Pane>
+            <Allotment.Pane>
+              <p>Editor view</p>
+            </Allotment.Pane>
+          </Allotment>
         </div>
         <div className={cn(
           "absolute inset-0",
