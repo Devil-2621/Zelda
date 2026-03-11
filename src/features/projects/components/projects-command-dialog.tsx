@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { AlertCircleIcon, Globe02Icon, Loading01Icon, GithubIcon, Cancel01Icon, SearchRemoveIcon, ArrowRight02Icon } from "hugeicons-react";
+import { AlertCircleIcon, Globe02Icon, Loading01Icon, GithubIcon, SearchRemoveIcon, ArrowRight02Icon } from "hugeicons-react";
 
 import {
   CommandDialog,

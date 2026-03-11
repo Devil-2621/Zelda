@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: "Zelda",
   description: "Zelda is a cloud IDE built with Next.js.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/zelda-logo-white.ico",
   },
 };
 

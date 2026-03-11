@@ -1,6 +1,6 @@
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { useState } from "react";
-
-import { ChevronRightIcon } from "lucide-react";
 import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
 
 import { cn } from "@/lib/utils";
@@ -12,6 +12,7 @@ import {
   useRenameFile,
   useDeleteFile,
 } from "@/features/projects/hooks/use-files";
+import { useEditor } from "@/features/editor/hooks/use-editor";
 
 import { getItemPadding } from "./constants";
 import { LoadingRow } from "./loading-row";
@@ -37,6 +38,8 @@ export const Tree = ({
   const deleteFile = useDeleteFile();
   const createFile = useCreateFile();
   const createFolder = useCreateFolder();
+
+  const { openFile, closeTab, activeTabId } = useEditor(projectId);
 
   const folderContents = useFolderContents({
     projectId,
@@ -80,6 +83,7 @@ export const Tree = ({
 
   if (item.type === "file") {
     const fileName = item.name;
+    const isActive = activeTabId === item._id;
 
     if (isRenaming) {
       return (
@@ -97,12 +101,12 @@ export const Tree = ({
       <TreeItemWrapper
         item={item}
         level={level}
-        isActive={false}
-        onClick={() => { }}
-        onDoubleClick={() => { }}
+        isActive={isActive}
+        onClick={() => openFile(item._id, { pinned: false })}
+        onDoubleClick={() => openFile(item._id, { pinned: true })}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
-          // TODO: Close tab
+          closeTab(item._id);
           deleteFile({ id: item._id })
         }}
       >
@@ -117,12 +121,10 @@ export const Tree = ({
   const folderRender = (
     <>
       <div className="flex items-center gap-0.5">
-        <ChevronRightIcon
-          className={cn(
-            "size-4 shrink-0 text-muted-foreground",
-            isOpen && "rotate-90"
-          )}
-        />
+        <HugeiconsIcon icon={ArrowRight01Icon} className={cn(
+                          "size-4 shrink-0 text-muted-foreground",
+                          isOpen && "rotate-90"
+                        )} />
         <FolderIcon folderName={folderName} className="size-4" />
       </div>
       <span className="truncate text-sm">{folderName}</span>
@@ -198,7 +200,6 @@ export const Tree = ({
         onClick={() => setIsOpen((value) => !value)}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
-          // TODO: Close tab
           deleteFile({ id: item._id })
         }}
         onCreateFile={() => startCreating("file")}
