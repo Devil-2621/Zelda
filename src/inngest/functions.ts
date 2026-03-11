@@ -1,9 +1,13 @@
+import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { firecrawl } from '@/lib/firecrawl';
-import { google } from '@ai-sdk/google';
 import { inngest } from './client';
 import { generateText } from 'ai';
 
 const URL_REGEX = /https?:\/\/[^\s]+/g;
+
+const openrouter = createOpenRouter({
+	apiKey: process.env.OPENROUTER_AI_API_KEY!,
+});
 
 export const demoGenerate = inngest.createFunction(
 	{ id: 'demo-generate' },
@@ -32,7 +36,7 @@ export const demoGenerate = inngest.createFunction(
 		await step.run('generate-text', async () => {
 			// Simulate a long-running task
 			return await generateText({
-				model: google('gemini-2.5-flash'),
+				model: openrouter('arcee-ai/trinity-large-preview:free'),
 				prompt: finalPrompt,
 				experimental_telemetry: {
 					isEnabled: true,
