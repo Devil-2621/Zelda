@@ -6,7 +6,7 @@ import {
   ConvexReactClient,
   AuthLoading,
 } from "convex/react";
-import { ClerkProvider, useAuth, UserButton } from "@clerk/nextjs";
+import { ClerkProvider, useAuth } from "@clerk/nextjs";
 import { ConvexProviderWithClerk } from "convex/react-clerk";
 
 import { UnauthenticatedView } from "@/features/auth/components/unauthenticated-view";

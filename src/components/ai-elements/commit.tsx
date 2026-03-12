@@ -18,7 +18,7 @@ import {
   MinusIcon,
   PlusIcon,
 } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 export type CommitProps = ComponentProps<typeof Collapsible>;
 
@@ -151,9 +151,13 @@ export const CommitTimestamp = ({
   children,
   ...props
 }: CommitTimestampProps) => {
-  const formatted = relativeTimeFormat.format(
-    Math.round((date.getTime() - Date.now()) / (1000 * 60 * 60 * 24)),
-    "day"
+  const formatted = useMemo(
+    () => relativeTimeFormat.format(
+      // eslint-disable-next-line react-hooks/purity
+      Math.round((date.getTime() - Date.now()) / (1000 * 60 * 60 * 24)),
+      "day"
+    ),
+    [date]
   );
 
   return (

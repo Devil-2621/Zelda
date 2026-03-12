@@ -1,4 +1,4 @@
-import { createAgent, anthropic, openai, createNetwork } from '@inngest/agent-kit';
+import { createAgent, openai, createNetwork } from '@inngest/agent-kit';
 
 import { CODING_AGENT_SYSTEM_PROMPT, TITLE_GENERATOR_SYSTEM_PROMPT } from './constants';
 import { createCreateFolderTool } from './tools/create-folder';
