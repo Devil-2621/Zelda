@@ -106,7 +106,7 @@ export const WebPreviewNavigationButton = ({
 }: WebPreviewNavigationButtonProps) => (
   <TooltipProvider>
     <Tooltip>
-      <TooltipTrigger asChild>
+      <TooltipTrigger >
         <Button
           className="h-8 w-8 p-0 hover:text-foreground"
           disabled={disabled}
@@ -215,7 +215,7 @@ export const WebPreviewConsole = ({
       open={consoleOpen}
       {...props}
     >
-      <CollapsibleTrigger asChild>
+      <CollapsibleTrigger >
         <Button
           className="flex w-full items-center justify-between p-4 text-left font-medium hover:bg-muted/50"
           variant="ghost"

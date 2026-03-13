@@ -36,7 +36,7 @@ export const demoGenerate = inngest.createFunction(
 		await step.run('generate-text', async () => {
 			// Simulate a long-running task
 			return await generateText({
-				model: openrouter('arcee-ai/trinity-large-preview:free'),
+				model: openrouter('openrouter/hunter-alpha'),
 				prompt: finalPrompt,
 				experimental_telemetry: {
 					isEnabled: true,

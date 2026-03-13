@@ -368,10 +368,10 @@ export const SchemaDisplayProperty = ({
   className,
   ...props
 }: SchemaDisplayPropertyProps) => {
-  const hasChildren = properties || items;
+  const hren = properties || items;
   const paddingLeft = 40 + depth * 16;
 
-  if (hasChildren) {
+  if (hren) {
     return (
       <Collapsible defaultOpen={depth < 2}>
         <CollapsibleTrigger

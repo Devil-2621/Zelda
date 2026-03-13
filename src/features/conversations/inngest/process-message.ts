@@ -109,7 +109,7 @@ export const processMessage = inngest.createFunction(
 				name: 'title-generator',
 				system: TITLE_GENERATOR_SYSTEM_PROMPT,
 				model: openai({
-					model: 'arcee-ai/trinity-large-preview:free',
+					model: 'openrouter/hunter-alpha',
 					baseUrl: 'https://openrouter.ai/api/v1',
 					apiKey: process.env.OPENROUTER_AI_API_KEY,
 					defaultParameters: { temperature: 0, max_completion_tokens: 50 },
@@ -150,7 +150,7 @@ export const processMessage = inngest.createFunction(
 				model: 'arcee-ai/trinity-large-preview:free',
 				baseUrl: 'https://openrouter.ai/api/v1',
 				apiKey: process.env.OPENROUTER_AI_API_KEY,
-				defaultParameters: { temperature: 0.3, max_completion_tokens: 16000 },
+				defaultParameters: { temperature: 0.3, max_completion_tokens: 64000 },
 			}),
 			tools: [
 				createListFilesTool({ internalKey, projectId }),
@@ -176,7 +176,7 @@ export const processMessage = inngest.createFunction(
 				);
 				const hasToolCalls = lastResult?.output.some((m) => m.type === 'tool_call');
 
-				// Anthropic outputs text AND tool calls together
+				// OpenRouter outputs text AND tool calls together
 				// Only stop if there's text WITHOUT tool calls (final response)
 				if (hasTextResponse && !hasToolCalls) {
 					return undefined;

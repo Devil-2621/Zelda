@@ -2,8 +2,29 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  reactCompiler: true,
+	/* config options here */
+	reactCompiler: true,
+	async headers() {
+		return [
+			{
+				// Only the project editor pages use WebContainer (which requires
+				// SharedArrayBuffer, which in turn requires cross-origin isolation).
+				// Scoping to /projects/* avoids disrupting Clerk OAuth popup flows
+				// on the home/auth pages, and keeps API routes untouched.
+				source: '/projects/(.*)',
+				headers: [
+					{
+						key: 'Cross-Origin-Opener-Policy',
+						value: 'same-origin',
+					},
+					{
+						key: 'Cross-Origin-Embedder-Policy',
+						value: 'credentialless',
+					},
+				],
+			},
+		];
+	},
 };
 
 export default withSentryConfig(nextConfig, {

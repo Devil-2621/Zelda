@@ -1,7 +1,7 @@
 import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { auth } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
-import { generateText, Output } from 'ai';
+import { generateText } from 'ai';
 import { z } from 'zod';
 
 const openrouter = createOpenRouter({
@@ -42,7 +42,10 @@ Follow these steps IN ORDER:
 3. Only if steps 1 and 2 don't apply: suggest what should be typed at the cursor position, using context from full_code.
 
 Your suggestion is inserted immediately after the cursor, so never suggest code that's already in the file.
-</instructions>`;
+</instructions>
+
+Respond with ONLY a JSON object in this exact format, no markdown, no explanation:
+{"suggestion": "<code to insert or empty string>"}`;
 
 export async function POST(request: Request) {
 	try {
@@ -76,14 +79,25 @@ export async function POST(request: Request) {
 			.replace('{nextLines}', nextLines || '')
 			.replace('{lineNumber}', lineNumber.toString());
 
-		const { output } = await generateText({
-			model: openrouter('arcee-ai/trinity-large-preview:free'),
-			output: Output.object({ schema: suggestionSchema }),
+		const { text } = await generateText({
+			model: openrouter('openrouter/hunter-alpha'),
 			prompt,
 			maxRetries: 0,
 		});
 
-		return NextResponse.json({ suggestion: output?.suggestion ?? '' });
+		// Parse the JSON response; fall back to empty suggestion on any parse failure
+		let suggestion = '';
+		try {
+			const jsonMatch = text.match(/\{[\s\S]*\}/);
+			if (jsonMatch) {
+				const parsed = suggestionSchema.safeParse(JSON.parse(jsonMatch[0]));
+				if (parsed.success) suggestion = parsed.data.suggestion;
+			}
+		} catch {
+			// Unparseable response — just return no suggestion
+		}
+
+		return NextResponse.json({ suggestion });
 	} catch (error: unknown) {
 		// Rate limited — return an empty suggestion instead of crashing
 		const statusCode =

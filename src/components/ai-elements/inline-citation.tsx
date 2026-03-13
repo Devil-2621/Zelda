@@ -63,7 +63,7 @@ export const InlineCitationCardTrigger = ({
   className,
   ...props
 }: InlineCitationCardTriggerProps) => (
-  <HoverCardTrigger asChild>
+  <HoverCardTrigger >
     <Badge
       className={cn("ml-1 rounded-full", className)}
       variant="secondary"

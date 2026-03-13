@@ -47,7 +47,7 @@ export const Plan = ({
   ...props
 }: PlanProps) => (
   <PlanContext.Provider value={{ isStreaming }}>
-    <Collapsible asChild data-slot="plan" {...props}>
+    <Collapsible data-slot="plan" {...props}>
       <Card className={cn("shadow-none", className)}>{children}</Card>
     </Collapsible>
   </PlanContext.Provider>
@@ -114,7 +114,7 @@ export const PlanAction = (props: PlanActionProps) => (
 export type PlanContentProps = ComponentProps<typeof CardContent>;
 
 export const PlanContent = (props: PlanContentProps) => (
-  <CollapsibleContent asChild>
+  <CollapsibleContent >
     <CardContent data-slot="plan-content" {...props} />
   </CollapsibleContent>
 );
@@ -128,7 +128,7 @@ export const PlanFooter = (props: PlanFooterProps) => (
 export type PlanTriggerProps = ComponentProps<typeof CollapsibleTrigger>;
 
 export const PlanTrigger = ({ className, ...props }: PlanTriggerProps) => (
-  <CollapsibleTrigger asChild>
+  <CollapsibleTrigger >
     <Button
       className={cn("size-8", className)}
       data-slot="plan-trigger"
